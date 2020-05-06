@@ -1,0 +1,21 @@
+{
+  "name": "character-leveler",
+  "version": "1.0.0",
+  "description": "Some ideas for how to create project for representing XP gained for a game's character.",
+  "main": "index.ts",
+  "scripts": {
+    "dev": " ts-node-dev --respawn src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kyle Tolle",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^13.13.5",
+    "numeral": "^2.0.6",
+    "nodemon": "^2.0.3",
+    "ts-node": "^8.10.1",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {}
+}
