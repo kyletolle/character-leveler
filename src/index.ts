@@ -12,9 +12,6 @@ var numeral = require('numeral');
  *   - levelModifier
 */
 
-// Th
-// 
-
 class CharacterLeveler {
     level : number;
 
