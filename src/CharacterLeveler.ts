@@ -42,6 +42,8 @@ export default class CharacterLeveler {
     // const SLAYING_LEVELING_MODIFIER = 1.1; // Results in about 3.6k creatures to Level 50.
     // const SLAYING_LEVELING_MODIFIER = Level.levelModifier; // Results in about 550 creatures to Level 50.
 
+    // This gives you a more predictable amount of XP per kill. There's less
+    // variety in how much XP you get per kill, but sometimes the consistency is nice.
     _creatureSlainXpGainedWithNarrowXpRange() : number {
         const levelXpModifier = this.SLAYING_LEVELING_MODIFIER_FOR_NARROW_XP_RANGE; 
         const baseSlainXp = 10;
@@ -53,6 +55,9 @@ export default class CharacterLeveler {
     }
 
     SLAYING_LEVELING_MODIFIER_FOR_WIDE_XP_RANGE = 1.07915; // Results in just about 5k creatures to Level 50, when bonus XP is added in beginning.
+
+    // This gives you a less certain amount of XP per kill, but it does mean
+    // you can sometimes get a ton of XP per kill. That can be rewarding.
     _creatureSlainXpGainedWithWideXpRange() : number {
         const levelXpModifier = this.SLAYING_LEVELING_MODIFIER_FOR_WIDE_XP_RANGE; 
         const baseSlainXp = 10;
