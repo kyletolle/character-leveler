@@ -1,5 +1,6 @@
 import XpTable from './XpTable';
-import XpLevelInfo from './XpLevelInfo';
+import Character from './Character';
+import CharacterLevel from './CharacterLeveler';
 
 /*
  * Let's think about what's required to make this work again.
@@ -12,26 +13,16 @@ import XpLevelInfo from './XpLevelInfo';
  *   - levelModifier
 */
 
-class CharacterLeveler {
-    level : number;
-
-    constructor(level: number) {
-        this.level = level;
-    }
-}
-
-class Character {
-    xp : number;
-
-    constructor(xp : number) {
-        this.xp = xp;
-    }
-}
-
-// const characterLeveler = new CharacterLeveler(1);
-
-new XpLevelInfo().logItOut();
+// new XpLevelInfo().logItOut();
 
 console.log(
     new XpTable().generate()
 );
+
+const currentXpTotal = 10_000;
+console.log(
+    new Character(currentXpTotal).getLevel()
+);
+console.log();
+
+new CharacterLevel().simulateXpGain();
