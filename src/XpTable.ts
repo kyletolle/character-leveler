@@ -1,29 +1,16 @@
-var numeral = require('numeral');
-import Level from './Level';
+import XpTableRow from './XpTableRow';
 
 export default class XpTable {
+    ROW_TITLE_LEVEL = 'Level';
+    ROW_TITLE_XP_GAINED = 'XP Gained So Far';
+    ROW_TITLE_XP_NEEDED = 'XP Needed For Next Level';
+
     generate() : string {
         let tableString = "";
-        tableString += "| Level | XP Gained So Far | XP Needed For Next Level |\n";
+        tableString += `| ${this.ROW_TITLE_LEVEL} | ${this.ROW_TITLE_XP_GAINED} | ${this.ROW_TITLE_XP_NEEDED} |\n`;
         for (let i : number = 0; i <=50; i++) {
-            const level = new Level(i)
-            const paddedI = i.toString().padStart(5, ' ')
-
-            const xpGainedSoFar = level.getXpGainedSoFar()
-            const paddedXpGainedSoFar = numeral(xpGainedSoFar).format('0,0')
-            const formattedXpGainedSoFar = (typeof xpGainedSoFar === 'number' ? paddedXpGainedSoFar : xpGainedSoFar).padStart(16, ' ')
-
-            const xpNeededForNextLevel = level.getXpNeededForNextLevel()
-            const paddedXpNeeded = numeral(xpNeededForNextLevel).format('0,0')
-            let formattedXpNeeded = '';
-            if (level.level === level.maxLevel) {
-                formattedXpNeeded = '---'.padStart(24, ' ');
-            } else {
-                formattedXpNeeded = (typeof xpNeededForNextLevel === 'number' ? paddedXpNeeded : xpNeededForNextLevel).padStart(24, ' ')
-            }
-
-            tableString += `| ${paddedI} | ${formattedXpGainedSoFar} | ${formattedXpNeeded} |\n`
-            
+            const levelTableRow = new XpTableRow(i);
+            tableString += levelTableRow.generate();
         }
         return tableString;
     }
