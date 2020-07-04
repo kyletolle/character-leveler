@@ -30,7 +30,7 @@ class Character {
 
 // const characterLeveler = new CharacterLeveler(1);
 
-// new XpLevelInfo().logItOut();
+new XpLevelInfo().logItOut();
 
 console.log(
     new XpTable().generate()

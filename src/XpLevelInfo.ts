@@ -28,5 +28,6 @@ export default class XpLevelInfo {
             "\n   XP Gained so far: ",
             level2.getXpGainedSoFar(),
             );
+        console.log();
     }
 }
