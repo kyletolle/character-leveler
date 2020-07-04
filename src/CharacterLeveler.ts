@@ -16,7 +16,7 @@ export default class CharacterLeveler {
         let totalCreaturesKilled = 0;
         console.log(`${this.character.name} is starting out with ${this.character.getXp()} XP.`);
         while(this.character.getLevel() < Level.maxLevel) {
-            const xpJustGained = this._randomXpGained();
+            const xpJustGained = this._creatureSlainXpGained();
             this.character.gainXp(xpJustGained);
             const characterLevel = this.character.getLevel()
             const totalXp = this.character.getXp();
@@ -34,7 +34,16 @@ export default class CharacterLeveler {
         console.log(`${this.character.name} hit max level of ${Level.maxLevel} by slaying ${totalCreaturesKilled} creatures!`)
     }
 
-    _randomXpGained() : number {
-        return Math.floor(Math.random() * 100) + 1
+    // const SLAYING_LEVELING_MODIFIER = 1.05; // Results in about 20k creatures to Level 50.
+    const SLAYING_LEVELING_MODIFIER = 1.09077; // Results in just about 5k creatures to Level 50.
+    // const SLAYING_LEVELING_MODIFIER = 1.1; // Results in about 3.6k creatures to Level 50.
+    // const SLAYING_LEVELING_MODIFIER = Level.levelModifier; // Results in about 550 creatures to Level 50.
+    _creatureSlainXpGained() : number {
+        const levelXpModifier = this.SLAYING_LEVELING_MODIFIER; 
+        const baseSlainXp = 10;
+        const randomBonusXp = Math.floor(Math.random() * 10) + 1
+        return Math.ceil(
+            (baseSlainXp * (levelXpModifier ** this.character.getLevel())) + randomBonusXp
+        );
     }
 }
