@@ -1,9 +1,11 @@
 import Level from './Level';
 
 export default class Character {
+    name : string;
     xp : number;
 
-    constructor(xp : number) {
+    constructor(name : string, xp : number) {
+        this.name = name;
         this.xp = xp;
     }
 

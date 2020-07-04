@@ -7,14 +7,14 @@ export default class CharacterLeveler {
 
     constructor() {
         this.startingXp = 0;
-        this.character = new Character(this.startingXp);
+        this.character = new Character('Zaglamir', this.startingXp);
     }
 
     simulateXpGain() {
         let previousLevel : number = 0;
         let creaturesKilledSinceLastLevel = 0;
         let totalCreaturesKilled = 0;
-        console.log(`Character is starting out with ${this.character.getXp()} XP.`);
+        console.log(`${this.character.name} is starting out with ${this.character.getXp()} XP.`);
         while(this.character.getLevel() < Level.maxLevel) {
             const xpJustGained = this._randomXpGained();
             this.character.gainXp(xpJustGained);
@@ -22,7 +22,7 @@ export default class CharacterLeveler {
             const totalXp = this.character.getXp();
             totalCreaturesKilled++;
             creaturesKilledSinceLastLevel++;
-            console.log(`Character killed a creature for ${xpJustGained} XP. Has total of ${totalXp} XP. Is Level ${characterLevel}.`);
+            console.log(`${this.character.name} killed a creature for ${xpJustGained} XP. Has total of ${totalXp} XP. Is Level ${characterLevel}.`);
             if(previousLevel != characterLevel) {
                 console.log("LEVELED UP!");
                 console.log(`Killed ${creaturesKilledSinceLastLevel} creatures since last leveling up.`);
@@ -31,7 +31,7 @@ export default class CharacterLeveler {
                 creaturesKilledSinceLastLevel = 0;
             }
         }
-        console.log(`Character hit max level of ${Level.maxLevel} by slaying ${totalCreaturesKilled} creatures!`)
+        console.log(`${this.character.name} hit max level of ${Level.maxLevel} by slaying ${totalCreaturesKilled} creatures!`)
     }
 
     _randomXpGained() : number {
