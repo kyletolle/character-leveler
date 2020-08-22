@@ -4,7 +4,7 @@
   "description": "Some ideas for how to create project for representing XP gained for a game's character.",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node-dev src/index.ts",
+    "start": "ts-node src/index.ts",
     "dev": "ts-node-dev --respawn src/index.ts",
     "debug": "node -r ts-node/register --inspect-brk=127.0.0.1:9229 src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
