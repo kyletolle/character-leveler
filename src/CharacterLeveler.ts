@@ -1,7 +1,7 @@
 import Character from './Character';
 import Level from './Level';
 import LevelingDataForSimulationRun from './LevelingDataForSimulation';
-
+import { Messages } from './Messages';
 
 export default class CharacterLeveler {
     startingXp : number;
@@ -17,7 +17,9 @@ export default class CharacterLeveler {
     simulateXpGain() {
         let previousLevel : number = 0;
         let creaturesKilledSinceLastLevel = 0;
-        // console.log(`${this.character.name} is starting out with ${this.character.getXp()} XP.`);
+        const messages = new Messages();
+        const startingMessage = `${this.character.name} is starting out with ${this.character.getXp()} XP.`
+        messages.push(startingMessage);
         while(this.character.getLevel() < Level.maxLevel) {
             const xpJustGained = this.creatureSlainXpGainedWithNarrowXpRange();
             // const xpJustGained = this.creatureSlainXpGainedWithWideXpRange();
@@ -26,16 +28,22 @@ export default class CharacterLeveler {
             const totalXp = this.character.getXp();
             this.totalCreaturesKilled++;
             creaturesKilledSinceLastLevel++;
-            // console.log(`${this.character.name} killed a creature for ${xpJustGained} XP. Has total of ${totalXp} XP. Is Level ${characterLevel}.`);
+            const slainCreatureMessage = `${this.character.name} killed a creature for ${xpJustGained} XP. Has total of ${totalXp} XP. Is Level ${characterLevel}.`
+            messages.push(slainCreatureMessage);
             if(previousLevel != characterLevel) {
-                // console.log("LEVELED UP!");
-                // console.log(`Killed ${creaturesKilledSinceLastLevel} creatures since last leveling up.`);
-                // console.log(`Killed ${this.totalCreaturesKilled} creatures total.`);
+                const leveledUpMessage = "LEVELED UP!"
+                messages.push(leveledUpMessage);
+                const creaturesSlainSinceLastLevelMessage = `Killed ${creaturesKilledSinceLastLevel} creatures since last leveling up.`
+                messages.push(creaturesSlainSinceLastLevelMessage);
+                const creaturesSlainTotalMessage = `Killed ${this.totalCreaturesKilled} creatures total.`
+                messages.push(creaturesSlainTotalMessage);
+
                 previousLevel = characterLevel;
                 creaturesKilledSinceLastLevel = 0;
             }
         }
-        console.log(`${this.character.name} hit max level of ${Level.maxLevel} by slaying ${this.totalCreaturesKilled} creatures!`)
+        const endingMessage = `${this.character.name} hit max level of ${Level.maxLevel} by slaying ${this.totalCreaturesKilled} creatures!`
+        messages.push(endingMessage);
     }
 
     get simulationData(): LevelingDataForSimulationRun {
