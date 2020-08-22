@@ -2,6 +2,7 @@ import XpTable from './XpTable';
 import CharacterLevel from './CharacterLeveler';
 import { SimulationRuns } from './SimulationRuns';
 import { SimulationDataFile } from './SimulationDataFile';
+import { Timer } from './Timer';
 
 /*
  * Let's think about what's required to make this work again.
@@ -26,7 +27,8 @@ console.log(
 );
 console.log();
 
-const startTime = new Date();
+const timer = new Timer();
+timer.start();
 const numberOfSimulationsToRun = 50;
 const simulationData = new SimulationRuns();
 for(let i = 0; i < numberOfSimulationsToRun; i++) {
@@ -36,8 +38,7 @@ for(let i = 0; i < numberOfSimulationsToRun; i++) {
 
     simulationData.push(leveler.simulationData);
 }
-const endTime = new Date();
-const durationInSeconds = (endTime.valueOf() - startTime.valueOf()) / 1000;
-console.log(`Simulation took ${durationInSeconds} seconds.`);
+timer.stop();
+console.log(`Simulation took ${timer.durationInSeconds()} seconds.`);
 
 new SimulationDataFile().write(simulationData);
