@@ -1,9 +1,7 @@
 import XpTable from './XpTable';
-import Character from './Character';
 import CharacterLevel from './CharacterLeveler';
-import LevelingDataForSimulationRun from './LevelingDataForSimulation';
-import { join } from 'path';
-import { promises as fsPromises } from 'fs';
+import { SimulationRuns } from './SimulationRuns';
+import { SimulationDataFile } from './SimulationDataFile';
 
 /*
  * Let's think about what's required to make this work again.
@@ -28,8 +26,8 @@ console.log(
 );
 console.log();
 
-const numberOfSimulationsToRun = 10_000;
-let simulationData = new Array<LevelingDataForSimulationRun>();
+const numberOfSimulationsToRun = 50;
+const simulationData = new SimulationRuns();
 for(let i = 0; i < numberOfSimulationsToRun; i++) {
     const leveler = new CharacterLevel()
     leveler.simulateXpGain();
@@ -38,16 +36,5 @@ for(let i = 0; i < numberOfSimulationsToRun; i++) {
     simulationData.push(leveler.simulationData);
 }
 
-class SimulationDataFile {
-    private fileName = 'simulationData.csv';
-    private localFilePath = join('.', this.fileName);
-
-    public async write(simulationData: Array<LevelingDataForSimulationRun>) {
-        const csvData: string[] = simulationData.map((runData) => {
-            return `${runData.creaturesKilledToGetToMaxLevel}`;
-        }).join("\n");
-        await fsPromises.writeFile(this.localFilePath, csvData);
-    }
-}
 
 new SimulationDataFile().write(simulationData);

@@ -4,4 +4,8 @@ export default class LevelingDataForSimulationRun {
     constructor(creaturesKilledToGetToMaxLevel: number) {
         this.creaturesKilledToGetToMaxLevel = creaturesKilledToGetToMaxLevel;
     }
+
+    toString() {
+        return this.creaturesKilledToGetToMaxLevel.toString();
+    }
 }
