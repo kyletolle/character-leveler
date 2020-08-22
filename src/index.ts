@@ -3,6 +3,7 @@ import CharacterLevel from './CharacterLeveler';
 import { SimulationRuns } from './SimulationRuns';
 import { SimulationDataFile } from './SimulationDataFile';
 import { Timer } from './Timer';
+import LevelingDataForSimulationRun from './LevelingDataForSimulation';
 
 // This was to test out XpLevelInfo worked.
 // new XpLevelInfo().logItOut();
@@ -16,22 +17,31 @@ console.log(new XpTable().generate());
 // console.log(new Character(currentXpTotal).getLevel());
 // console.log();
 
-// This runs a bunch of simulations and writes out a file with how many kills it
-// took to reach max level for each run
-const timer = new Timer();
-timer.start();
-const numberOfSimulationsToRun = 50;
-const simulationData = new SimulationRuns();
-for (let i = 0; i < numberOfSimulationsToRun; i++) {
-  const leveler = new CharacterLevel();
-  leveler.simulateXpGain();
-  if (i != 0 && i % 50 === 0) {
-    console.log(`Finished ${i} simulations`);
+const runSimulations = async () => {
+  // This runs a bunch of simulations and writes out a file with how many kills it
+  // took to reach max level for each run
+  const timer = new Timer();
+  timer.start();
+  const numberOfSimulationsToRun = 10_000;
+  const simulationPromises = new Array<Promise<LevelingDataForSimulationRun>>();
+  for (let i = 0; i < numberOfSimulationsToRun; i++) {
+    const leveler = new CharacterLevel();
+    simulationPromises.push(leveler.simulateXpGain());
+    if (i != 0 && i % 50 === 0) {
+      console.log(`Finished ${i} simulations`);
+    }
   }
 
-  simulationData.push(leveler.simulationData);
-}
-timer.stop();
-console.log(`Simulation took ${timer.durationInSeconds()} seconds.`);
+  const resolvedPromises = await Promise.all(simulationPromises);
 
-new SimulationDataFile().write(simulationData);
+  const simulationData = new SimulationRuns();
+  for (const simulationDatum of resolvedPromises) {
+    simulationData.push(simulationDatum);
+  }
+  timer.stop();
+  console.log(`Simulation took ${timer.durationInSeconds()} seconds.`);
+
+  new SimulationDataFile().write(simulationData);
+};
+
+runSimulations();
