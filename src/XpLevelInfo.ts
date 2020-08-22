@@ -1,7 +1,7 @@
 import Level from './Level';
 
 export default class XpLevelInfo {
-  logItOut() {
+  logItOut(): void {
     const level0 = new Level(0);
     console.log(
       'Level 0: \n',

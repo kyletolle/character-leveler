@@ -5,7 +5,7 @@ export default class LevelingDataForSimulationRun {
     this.creaturesKilledToGetToMaxLevel = creaturesKilledToGetToMaxLevel;
   }
 
-  toString() {
+  toString(): string {
     return this.creaturesKilledToGetToMaxLevel.toString();
   }
 }

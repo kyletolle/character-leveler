@@ -14,7 +14,7 @@ export default class CharacterLeveler {
     this.totalCreaturesKilled = 0;
   }
 
-  simulateXpGain() {
+  simulateXpGain(): void {
     let previousLevel = 0;
     let creaturesKilledSinceLastLevel = 0;
     const messages = new Messages();
@@ -25,9 +25,8 @@ export default class CharacterLeveler {
     while (this.character.getLevel() < Level.maxLevel) {
       const xpJustGained = this.creatureSlainXpGainedWithNarrowXpRange();
       // const xpJustGained = this.creatureSlainXpGainedWithWideXpRange();
-      this.character.gainXp(xpJustGained);
       const characterLevel = this.character.getLevel();
-      const totalXp = this.character.getXp();
+      const totalXp = this.character.gainXp(xpJustGained);
       this.totalCreaturesKilled++;
       creaturesKilledSinceLastLevel++;
       const slainCreatureMessage = `${this.character.name} killed a creature for ${xpJustGained} XP. Has total of ${totalXp} XP. Is Level ${characterLevel}.`;

@@ -2,11 +2,11 @@ export class Timer {
   startTime?: Date;
   endTime?: Date;
 
-  start() {
+  start(): void {
     this.startTime = new Date();
   }
 
-  stop() {
+  stop(): void {
     this.endTime = new Date();
   }
 

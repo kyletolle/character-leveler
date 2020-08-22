@@ -9,8 +9,9 @@ export default class Character {
     this.xp = xp;
   }
 
-  gainXp(amountOfXpGained: number) {
+  gainXp(amountOfXpGained: number): number {
     this.xp += amountOfXpGained;
+    return this.getXp();
   }
 
   getLevel(): number {
