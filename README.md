@@ -15,3 +15,7 @@ npm install -g ts-node-dev
 ```
 npm run dev
 ```
+
+## Formatting
+
+Followed example from https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project to add ESLint and Prettier to this project
