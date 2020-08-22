@@ -26,6 +26,7 @@ console.log(
 );
 console.log();
 
+const startTime = new Date();
 const numberOfSimulationsToRun = 50;
 const simulationData = new SimulationRuns();
 for(let i = 0; i < numberOfSimulationsToRun; i++) {
@@ -35,6 +36,8 @@ for(let i = 0; i < numberOfSimulationsToRun; i++) {
 
     simulationData.push(leveler.simulationData);
 }
-
+const endTime = new Date();
+const durationInSeconds = (endTime.valueOf() - startTime.valueOf()) / 1000;
+console.log(`Simulation took ${durationInSeconds} seconds.`);
 
 new SimulationDataFile().write(simulationData);
