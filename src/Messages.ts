@@ -1,4 +1,4 @@
-export class Messages {
+export default class Messages {
   messages = new Array<string>();
   private shouldConsoleLog = false;
 

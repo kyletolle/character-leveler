@@ -1,13 +1,11 @@
-import LevelingDataForSimulationRun from './LevelingDataForSimulation';
+export default class SimulationRuns {
+  data = new Array<number>();
 
-export class SimulationRuns {
-  data = new Array<LevelingDataForSimulationRun>();
-
-  push(item: LevelingDataForSimulationRun) {
+  push(item: number): number {
     return this.data.push(item);
   }
 
-  toCsv() {
+  toCsv(): string {
     return this.data.map((runData) => runData.toString()).join('\n');
   }
 }

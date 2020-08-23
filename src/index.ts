@@ -1,9 +1,9 @@
 import XpTable from './XpTable';
-import CharacterLevel from './CharacterLeveler';
-import { SimulationRuns } from './SimulationRuns';
-import { SimulationDataFile } from './SimulationDataFile';
-import { Timer } from './Timer';
+import SimulationRuns from './SimulationRuns';
+import SimulationDataFile from './SimulationDataFile';
+import Timer from './Timer';
 import LevelingDataForSimulationRun from './LevelingDataForSimulation';
+import workerpool from 'workerpool';
 
 // This was to test out XpLevelInfo worked.
 // new XpLevelInfo().logItOut();
@@ -17,22 +17,39 @@ console.log(new XpTable().generate());
 // console.log(new Character(currentXpTotal).getLevel());
 // console.log();
 
+// const runSimulation = (): LevelingDataForSimulationRun => {
+//   const leveler = new CharacterLeveler();
+//   return leveler.simulateXpGain();
+// };
+
 const runSimulations = async () => {
   // This runs a bunch of simulations and writes out a file with how many kills it
   // took to reach max level for each run
   const timer = new Timer();
   timer.start();
-  const numberOfSimulationsToRun = 10_000;
-  const simulationPromises = new Array<Promise<LevelingDataForSimulationRun>>();
+  const numberOfSimulationsToRun = 50;
+  const simulationPromises = [];
+
+  // const pool = workerpool.pool();
+  const pool = workerpool.pool(__dirname + '/Worker.js');
+
   for (let i = 0; i < numberOfSimulationsToRun; i++) {
-    const leveler = new CharacterLevel();
-    simulationPromises.push(leveler.simulateXpGain());
-    if (i != 0 && i % 50 === 0) {
-      console.log(`Finished ${i} simulations`);
-    }
+    const runSimulationPromise = pool
+      .exec('runSimulation', [])
+      .catch((error) => {
+        console.error('Ran into an error:', error.toString());
+        const placeholderLevelingData = new LevelingDataForSimulationRun(0);
+        return placeholderLevelingData;
+      });
+    simulationPromises.push(runSimulationPromise);
+
+    // if (i != 0 && i % 50 === 0) {
+    //   console.log(`Finished ${i} simulations`);
+    // }
   }
 
-  const resolvedPromises = await Promise.all(simulationPromises);
+  const resolvedPromises: number[] = await Promise.all(simulationPromises);
+  pool.terminate();
 
   const simulationData = new SimulationRuns();
   for (const simulationDatum of resolvedPromises) {

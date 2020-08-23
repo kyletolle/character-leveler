@@ -24,12 +24,14 @@
     "prettier": "^2.0.5",
     "ts-node": "^8.10.1",
     "ts-node-dev": "^1.0.0-pre.44",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "workerpool": "^6.0.0"
   },
   "devDependencies": {
     "@tsconfig/node12": "^1.0.7",
     "@types/node": "^13.13.15",
     "@types/numeral": "0.0.28",
+    "@types/workerpool": "^6.0.0",
     "husky": "^4.2.5"
   },
   "husky": {

@@ -1,7 +1,7 @@
 import Character from './Character';
 import Level from './Level';
 import LevelingDataForSimulationRun from './LevelingDataForSimulation';
-import { Messages } from './Messages';
+import Messages from './Messages';
 
 export default class CharacterLeveler {
   startingXp: number;
@@ -20,7 +20,7 @@ export default class CharacterLeveler {
    * https://nodejs.org/api/worker_threads.html#worker_threads_worker_threads
    * Maybe we can use https://github.com/josdejong/workerpool
    */
-  async simulateXpGain(): Promise<LevelingDataForSimulationRun> {
+  simulateXpGain(): void {
     let previousLevel = 0;
     let creaturesKilledSinceLastLevel = 0;
     const messages = new Messages();
@@ -51,11 +51,10 @@ export default class CharacterLeveler {
     }
     const endingMessage = `${this.character.name} hit max level of ${Level.maxLevel} by slaying ${this.totalCreaturesKilled} creatures!`;
     messages.push(endingMessage);
-    return this.simulationData;
   }
 
-  get simulationData(): LevelingDataForSimulationRun {
-    return new LevelingDataForSimulationRun(this.totalCreaturesKilled);
+  getTotalCreaturesKilled(): number {
+    return this.totalCreaturesKilled;
   }
 
   // const SLAYING_LEVELING_MODIFIER = 1.05; // Results in about 20k creatures to Level 50.
