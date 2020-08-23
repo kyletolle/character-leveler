@@ -27,7 +27,7 @@ const runSimulations = async () => {
   // took to reach max level for each run
   const timer = new Timer();
   timer.start();
-  const numberOfSimulationsToRun = 50;
+  const numberOfSimulationsToRun = 10_000;
   const simulationPromises = [];
 
   // const pool = workerpool.pool();

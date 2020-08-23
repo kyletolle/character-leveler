@@ -1,6 +1,5 @@
 import Character from './Character';
 import Level from './Level';
-import LevelingDataForSimulationRun from './LevelingDataForSimulation';
 import Messages from './Messages';
 
 export default class CharacterLeveler {
@@ -14,12 +13,6 @@ export default class CharacterLeveler {
     this.totalCreaturesKilled = 0;
   }
 
-  /**
-   * TODO: Promises don't actually give us a speed up like I hoped. Things are
-   * CPU-bound instead of I/O bound. So can we use Worker Threads instead?
-   * https://nodejs.org/api/worker_threads.html#worker_threads_worker_threads
-   * Maybe we can use https://github.com/josdejong/workerpool
-   */
   simulateXpGain(): void {
     let previousLevel = 0;
     let creaturesKilledSinceLastLevel = 0;
@@ -29,8 +22,8 @@ export default class CharacterLeveler {
     } is starting out with ${this.character.getXp()} XP.`;
     messages.push(startingMessage);
     while (this.character.getLevel() < Level.maxLevel) {
-      const xpJustGained = this.creatureSlainXpGainedWithNarrowXpRange();
-      // const xpJustGained = this.creatureSlainXpGainedWithWideXpRange();
+      // const xpJustGained = this.creatureSlainXpGainedWithNarrowXpRange();
+      const xpJustGained = this.creatureSlainXpGainedWithWideXpRange();
       const characterLevel = this.character.getLevel();
       const totalXp = this.character.gainXp(xpJustGained);
       this.totalCreaturesKilled++;
