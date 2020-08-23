@@ -31,7 +31,7 @@ const runSimulations = async () => {
   const simulationPromises = [];
 
   // const pool = workerpool.pool();
-  const pool = workerpool.pool(__dirname + '/Worker.js');
+  const pool = workerpool.pool(__dirname + '/Worker.js', { maxWorkers: 11 });
 
   for (let i = 0; i < numberOfSimulationsToRun; i++) {
     const runSimulationPromise = pool
