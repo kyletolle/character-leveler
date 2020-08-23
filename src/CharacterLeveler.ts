@@ -1,7 +1,6 @@
 import Character from './Character';
 import Level from './Level';
-import LevelingDataForSimulationRun from './LevelingDataForSimulation';
-import { Messages } from './Messages';
+import Messages from './Messages';
 
 export default class CharacterLeveler {
   startingXp: number;
@@ -23,8 +22,8 @@ export default class CharacterLeveler {
     } is starting out with ${this.character.getXp()} XP.`;
     messages.push(startingMessage);
     while (this.character.getLevel() < Level.maxLevel) {
-      const xpJustGained = this.creatureSlainXpGainedWithNarrowXpRange();
-      // const xpJustGained = this.creatureSlainXpGainedWithWideXpRange();
+      // const xpJustGained = this.creatureSlainXpGainedWithNarrowXpRange();
+      const xpJustGained = this.creatureSlainXpGainedWithWideXpRange();
       const characterLevel = this.character.getLevel();
       const totalXp = this.character.gainXp(xpJustGained);
       this.totalCreaturesKilled++;
@@ -47,8 +46,8 @@ export default class CharacterLeveler {
     messages.push(endingMessage);
   }
 
-  get simulationData(): LevelingDataForSimulationRun {
-    return new LevelingDataForSimulationRun(this.totalCreaturesKilled);
+  getTotalCreaturesKilled(): number {
+    return this.totalCreaturesKilled;
   }
 
   // const SLAYING_LEVELING_MODIFIER = 1.05; // Results in about 20k creatures to Level 50.

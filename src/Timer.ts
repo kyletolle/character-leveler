@@ -1,13 +1,15 @@
-export class Timer {
+export default class Timer {
   startTime?: Date;
   endTime?: Date;
 
   start(): void {
     this.startTime = new Date();
+    console.log(`Starting at ${this.startTime}`);
   }
 
   stop(): void {
     this.endTime = new Date();
+    console.log(`Ending at ${this.endTime}`);
   }
 
   durationInSeconds(): number {
