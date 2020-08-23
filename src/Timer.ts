@@ -4,10 +4,12 @@ export default class Timer {
 
   start(): void {
     this.startTime = new Date();
+    console.log(`Starting at ${this.startTime}`);
   }
 
   stop(): void {
     this.endTime = new Date();
+    console.log(`Ending at ${this.endTime}`);
   }
 
   durationInSeconds(): number {

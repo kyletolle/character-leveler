@@ -3,8 +3,18 @@ import { promises as fsPromises } from 'fs';
 import SimulationRuns from './SimulationRuns';
 
 export default class SimulationDataFile {
-  private fileName = 'simulationData.csv';
-  private localFilePath = join('.', this.fileName);
+  private fileNamePrefix = 'simulationData.';
+  private fileNameExtension = '.csv';
+  private fileNumber: number;
+  private localFilePath: string;
+
+  constructor(fileNumber: number) {
+    this.fileNumber = fileNumber;
+    this.localFilePath = join(
+      '.',
+      `${this.fileNamePrefix}${this.fileNumber}${this.fileNameExtension}`,
+    );
+  }
 
   public async write(simulationData: SimulationRuns): Promise<void> {
     const csvData = simulationData.toCsv();

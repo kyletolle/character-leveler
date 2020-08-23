@@ -116,3 +116,5 @@ dist
 .yarn/build-state.yml
 .pnp.*
 *.csv
+
+.DS_Store
