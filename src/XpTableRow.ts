@@ -10,14 +10,14 @@ export default class XpTableRow {
   }
 
   generate(): string {
-    return `| ${this._formattedLevel()} | ${this._formattedXpGainedSoFar()} | ${this._formattedXpNeededForNextLevel()} |\n`;
+    return `| ${this.formattedLevel()} | ${this.formattedXpGainedSoFar()} | ${this.formattedXpNeededForNextLevel()} |\n`;
   }
 
-  _formattedLevel(): string {
+  private formattedLevel(): string {
     return this.levelNumber.toString().padStart(5, ' ');
   }
 
-  _formattedXpGainedSoFar(): string {
+  private formattedXpGainedSoFar(): string {
     const xpGainedSoFar = this.level.getXpGainedSoFar();
     const paddedXpGainedSoFar = numeral(xpGainedSoFar).format('0,0');
     const valueToPad =
@@ -25,7 +25,7 @@ export default class XpTableRow {
     return valueToPad.padStart(16, ' ');
   }
 
-  _formattedXpNeededForNextLevel(): string {
+  private formattedXpNeededForNextLevel(): string {
     const xpNeededForNextLevel = this.level.getXpNeededForNextLevel();
     const paddedXpNeeded = numeral(xpNeededForNextLevel).format('0,0');
     let valueToPad = '';
