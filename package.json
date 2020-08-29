@@ -11,7 +11,8 @@
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
     "logXpLevelInfo": "ts-node src/scripts/logXpLevelInfo.ts",
     "logXpTable": "ts-node src/scripts/logXpTable.ts",
-    "getLevelFor10kXp": "ts-node src/scripts/getLevelFor10kXp.ts"
+    "getLevelFor10kXp": "ts-node src/scripts/getLevelFor10kXp.ts",
+    "oneSimulation": "ts-node src/scripts/oneSimulation.ts"
   },
   "author": "Kyle Tolle",
   "license": "ISC",

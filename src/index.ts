@@ -2,19 +2,6 @@ import SimulationRuns from './SimulationRuns';
 import SimulationDataFile from './SimulationDataFile';
 import Timer from './Timer';
 import workerpool from 'workerpool';
-import CharacterLeveler from './CharacterLeveler';
-
-const runOneSimulation = (): number => {
-  const leveler = new CharacterLeveler();
-  leveler.simulateXpGain();
-  return leveler.getTotalCreaturesKilled();
-};
-const totalCreaturesKilled = runOneSimulation();
-console.log(
-  'For a single simulation, we had killed this many creatures:',
-  totalCreaturesKilled,
-);
-console.log('\n');
 
 const runSimulationInParallel = async (
   numberOfWorkers: number,
