@@ -8,7 +8,8 @@
     "dev": "ts-node-dev --respawn src/index.ts",
     "debug": "node -r ts-node/register --inspect-brk=127.0.0.1:9229 src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix"
+    "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
+    "logXpLevelInfo": "ts-node src/scripts/logXpLevelInfo.ts"
   },
   "author": "Kyle Tolle",
   "license": "ISC",

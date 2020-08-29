@@ -12,8 +12,16 @@ npm install -g ts-node-dev
 
 ## Running
 
+### For Development 
+
 ```
 npm run dev
+```
+
+### Other Scripts
+
+```
+npm run logXpLevelInfo
 ```
 
 ## Formatting

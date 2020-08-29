@@ -5,14 +5,6 @@ import Timer from './Timer';
 import workerpool from 'workerpool';
 import Character from './Character';
 import CharacterLeveler from './CharacterLeveler';
-import XpLevelInfo from './XpLevelInfo';
-
-// This was to test out XpLevelInfo worked.
-const logXpLevelInfo = () => {
-  console.log('XpLevelInfo:');
-  new XpLevelInfo().logItOut();
-};
-logXpLevelInfo();
 
 // This generates an XP table so we can see how much XP is required to reach
 // each level.
