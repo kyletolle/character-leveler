@@ -26,6 +26,7 @@ npm run logXpTable
 npm run getLevelFor10kXP
 npm run oneSimulation
 npm run simulationsInParallelOn5Workers
+npm run simulationsAndTryDifferentNumbersOfParallelWorkers
 ```
 
 ## Formatting
