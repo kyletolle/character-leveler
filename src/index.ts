@@ -1,18 +1,9 @@
-import XpTable from './XpTable';
 import SimulationRuns from './SimulationRuns';
 import SimulationDataFile from './SimulationDataFile';
 import Timer from './Timer';
 import workerpool from 'workerpool';
 import Character from './Character';
 import CharacterLeveler from './CharacterLeveler';
-
-// This generates an XP table so we can see how much XP is required to reach
-// each level.
-const logXpTable = () => {
-  console.log('XP Table:');
-  console.log(new XpTable().generate());
-};
-logXpTable();
 
 // This was to test that getLevel worked.
 const getLevelFor10kXp = () => {
