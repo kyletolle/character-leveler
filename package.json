@@ -13,7 +13,7 @@
     "logXpTable": "ts-node src/scripts/logXpTable.ts",
     "getLevelFor10kXp": "ts-node src/scripts/getLevelFor10kXp.ts",
     "oneSimulation": "ts-node src/scripts/oneSimulation.ts",
-    "runSimulationsInParallelOn5Workers": "tsc && node dist/scripts/runSimulationsInParallelOn5Workers.js"
+    "simulationsInParallelOn5Workers": "tsc && node dist/scripts/simulationsInParallelOn5Workers.js"
   },
   "author": "Kyle Tolle",
   "license": "ISC",
