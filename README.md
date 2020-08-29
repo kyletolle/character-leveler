@@ -23,6 +23,7 @@ npm run dev
 ```
 npm run logXpLevelInfo
 npm run logXpTable
+npm run getLevelFor10kXP
 ```
 
 ## Formatting

@@ -2,19 +2,7 @@ import SimulationRuns from './SimulationRuns';
 import SimulationDataFile from './SimulationDataFile';
 import Timer from './Timer';
 import workerpool from 'workerpool';
-import Character from './Character';
 import CharacterLeveler from './CharacterLeveler';
-
-// This was to test that getLevel worked.
-const getLevelFor10kXp = () => {
-  const currentXpTotal = 10_000;
-  const currentLevel = new Character('kernelRiot', currentXpTotal).getLevel();
-  console.log(
-    `When you have ${currentXpTotal} you will be level ${currentLevel}`,
-  );
-};
-getLevelFor10kXp();
-console.log('\n');
 
 const runOneSimulation = (): number => {
   const leveler = new CharacterLeveler();
