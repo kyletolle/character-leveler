@@ -1,3 +1,1 @@
-import { runSimulationsAndTryDifferentNumbersOfParallelWorkers } from './runSimulationsAndTryDifferentNumbersOfParallelWorkers';
-
-runSimulationsAndTryDifferentNumbersOfParallelWorkers();
+require('./scripts/simulationsInParallelOn5Workers');
