@@ -1,1 +1,1 @@
-require('./scripts/simulationsInParallelOn5Workers');
+require('./scripts/oneSimulation.ts');
