@@ -2,6 +2,7 @@ import SimulationRuns from './SimulationRuns';
 import SimulationDataFile from './SimulationDataFile';
 import Timer from './Timer';
 import workerpool from 'workerpool';
+import path from 'path';
 
 export const runSimulationInParallel = async (
   numberOfWorkers: number,
@@ -12,7 +13,9 @@ export const runSimulationInParallel = async (
   const simulationPromises = [];
 
   console.log(`Creating a pool with ${numberOfWorkers} workers!`);
-  const pool = workerpool.pool(__dirname + '/Worker.js', {
+
+  const workerFilePath = path.join(__dirname, '..', 'dist', 'Worker.js');
+  const pool = workerpool.pool(workerFilePath, {
     maxWorkers: numberOfWorkers,
   });
 
