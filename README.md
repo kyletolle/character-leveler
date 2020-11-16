@@ -12,7 +12,7 @@ npm install -g ts-node-dev
 
 ## Running
 
-### For Development 
+### For Development
 
 ```
 npm run dev
@@ -23,7 +23,7 @@ npm run dev
 ```
 npm run logXpLevelInfo
 npm run logXpTable
-npm run getLevelFor10kXP
+npm run getLevelFor10kXp
 npm run oneSimulation
 npm run simulationsInParallelOn5Workers
 npm run simulationsAndTryDifferentNumbersOfParallelWorkers
