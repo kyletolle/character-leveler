@@ -4,11 +4,18 @@
   "description": "Some ideas for how to create project for representing XP gained for a game's character.",
   "main": "index.ts",
   "scripts": {
+    "build": "tsc",
     "start": "tsc && node dist/index.js",
     "dev": "ts-node-dev --respawn src/index.ts",
     "debug": "node -r ts-node/register --inspect-brk=127.0.0.1:9229 src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix"
+    "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
+    "logXpLevelInfo": "ts-node src/scripts/logXpLevelInfo.ts",
+    "logXpTable": "ts-node src/scripts/logXpTable.ts",
+    "getLevelFor10kXp": "ts-node src/scripts/getLevelFor10kXp.ts",
+    "oneSimulation": "ts-node src/scripts/oneSimulation.ts",
+    "simulationsInParallelOn5Workers": "tsc && node dist/scripts/simulationsInParallelOn5Workers.js",
+    "simulationsAndTryDifferentNumbersOfParallelWorkers": "tsc && node dist/scripts/simulationsAndTryDifferentNumbersOfParallelWorkers.js"
   },
   "author": "Kyle Tolle",
   "license": "ISC",
